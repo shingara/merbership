@@ -18,3 +18,41 @@ Spec::Runner.configure do |config|
   config.include(Merb::Test::RouteHelper)
   config.include(Merb::Test::ControllerHelper)
 end
+require File.dirname(__FILE__) + '/fixtures.rb'
+
+Merb::Test.add_helpers do
+ 
+  def create_default_admin
+    unless Member.first(:login => 'shingara')
+      unless Function.first(:admin => true)
+        Function.gen(:president)
+      end
+      Member.gen( :login => 'shingara',
+                  :password => 'tintinpouet',
+                  :password_confirmation => 'tintinpouet',
+                  :function => Function.first(:admin => true)) or raise "can't create user"
+    end
+  end
+
+  def create_default_member
+    unless Member.first(:login => 'oupsnow')
+      Member.gen( :login => 'oupsnow',
+                  :password => 'tintinpouet',
+                  :password_confirmation => 'tintinpouet') or raise "can't create user"
+    end
+  end
+ 
+  def login_admin
+    create_default_admin
+    request('/login', {:method => 'PUT',
+            :params => { :login => 'shingara',
+              :password => 'tintinpouet' }})
+  end
+
+  def login_member
+    create_default_member
+    request('/login', {:method => 'PUT',
+            :params => { :login => 'oupsnow',
+              :password => 'tintinpouet' }})
+  end
+end
