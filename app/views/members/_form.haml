@@ -1,0 +1,12 @@
+%p text_field :login
+%p text_field :firstname
+%p text_field :lastname
+%p text_field :email
+%p text_field :birthdate
+%p text_field :occupation
+%p text_field :address
+%p text_field :city
+%p text_field :phone_number
+%p text_field :website
+%p text_field :subscription_on
+%p select :function, :collection => Function.all.not_admin, :text_method => :name, :value_method => :id

@@ -1,12 +1,9 @@
-%h1
-  Members controller, edit action
-%p
-  Edit this file in
-  %tt
-    app/views/members/edit.html.erb
+%h1 Edit member
+
 = error_messages_for @member
 
 = form_for(@member, :action => url(:member, @member)) do
+  = partial 'form'
   %p
     = submit "Update"
 

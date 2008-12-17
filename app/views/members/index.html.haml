@@ -1,16 +1,23 @@
-%h1
-  Members controller, index action
-%p
-  Edit this file in
-  %tt
-    app/views/members/index.html.erb
-%table
-  %tr
-  - for member in @members
-    %tr
-      %td
-        = link_to 'Show', url(:member, member)
-      %td
-        = link_to 'Edit', url(:edit_member,  member)
+%h1 List of members
 
-= link_to 'New', url(:new_member)
+%table
+  %thead
+    %tr
+      %th Login
+      %th Firstname
+      %th Lastname
+      %th function
+
+  %tbody
+    - for member in @members
+      %tr
+        %td=member.login
+        %td=member.firstname
+        %td=member.lastname
+        %td=member.function.name
+        %td
+          = link_to 'Show', url(:member, member)
+        %td
+          = link_to 'Edit', url(:edit_member,  member) if admin?
+
+= link_to 'New', url(:new_member) if admin?

@@ -1,5 +1,11 @@
 module Merb
   module GlobalHelpers
-    # helpers defined here available to all views.  
+    def admin?
+      if session.user
+        return session.user.admin?
+      else
+        return false
+      end
+    end
   end
 end

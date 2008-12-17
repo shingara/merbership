@@ -1,12 +1,9 @@
-%h1 Members controller, new action
-
-%p 
-  Edit this file in 
-  %tt app/views/members/new.html.erb
+%h1 Create a membre
 
 = error_messages_for @member
 
 = form_for(@member, :action => url(:members) ) do
+  = partial 'form'
   %p
     = submit "Create"
 
