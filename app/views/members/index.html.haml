@@ -1,23 +1,27 @@
 %h1 List of members
 
-%table
-  %thead
-    %tr
-      %th Login
-      %th Firstname
-      %th Lastname
-      %th function
 
-  %tbody
-    - for member in @members
+- unless @members.empty?
+  %table
+    %thead
       %tr
-        %td=member.login
-        %td=member.firstname
-        %td=member.lastname
-        %td=member.function.name
-        %td
-          = link_to 'Show', url(:member, member)
-        %td
-          = link_to 'Edit', url(:edit_member,  member) if admin?
+        %th Login
+        %th Firstname
+        %th Lastname
+        %th function
+
+    %tbody
+      - for member in @members
+        %tr
+          %td=member.login
+          %td=member.firstname
+          %td=member.lastname
+          %td=member.function.name
+          %td
+            = link_to 'Show', url(:member, member)
+          %td
+            = link_to 'Edit', url(:edit_member,  member) if admin?
+- else
+  %p There are no member. So create one.
 
 = link_to 'New', url(:new_member) if admin?

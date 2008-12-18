@@ -8,9 +8,10 @@ given "a member exists" do
 end
 
 describe "resource(:members)" do
-  describe "GET", :given => 'a member exists' do
+  describe "GET" do
     
     before(:each) do
+      Member.all.destroy!
       @response = request(resource(:members))
     end
     
@@ -19,8 +20,7 @@ describe "resource(:members)" do
     end
 
     it "contains a list of members" do
-      pending
-      @response.should have_xpath("//ul")
+      @response.should_not have_xpath("//table")
     end
     
   end
@@ -31,8 +31,7 @@ describe "resource(:members)" do
     end
     
     it "has a list of members" do
-      pending
-      @response.should have_xpath("//ul/li")
+      @response.should have_xpath("//table/tbody/tr/td")
     end
   end
   
