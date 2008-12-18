@@ -1,12 +1,12 @@
-%p text_field :login
-%p text_field :firstname
-%p text_field :lastname
-%p text_field :email
-%p text_field :birthdate
-%p text_field :occupation
-%p text_field :address
-%p text_field :city
-%p text_field :phone_number
-%p text_field :website
-%p text_field :subscription_on
-%p select :function, :collection => Function.all.not_admin, :text_method => :name, :value_method => :id
+%p=text_field :login, :label => 'Login :'
+%p=text_field :firstname, :label => 'Firstname :'
+%p=text_field :lastname, :label => 'Lastname :'
+%p=text_field :email, :label => 'Email :'
+%p=text_field :birthdate, :label => 'Birth date :'
+%p=text_field :occupation, :label => 'Occupation :'
+%p=text_field :address, :label => 'Address :'
+%p=text_field :city, :label => 'City :'
+%p=text_field :phone_number, :label => 'Phone number :'
+%p=text_field :website, :label => 'Website :'
+%p=text_field :subscription_on, :label => 'Date of subscription :'
+%p=select :function_id, :collection => Function.not_admin, :text_method => :name, :value_method => :id

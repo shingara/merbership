@@ -5,7 +5,6 @@ class Members < Application
   before :admin_authenticated, :only => [:new, :create, :destroy]
   before :edit_own, :only => [:edit, :update]
 
-
   def index
     @members = Member.all
     display @members
