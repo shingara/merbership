@@ -1,0 +1,10 @@
+%h1 Create function
+
+= error_messages_for @function
+
+= form_for(@function, :action => url(:functions) ) do
+  = partial :form
+  %p
+    = submit "Create"
+
+= link_to 'Back', url(:functions)

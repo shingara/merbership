@@ -1,0 +1,21 @@
+%h1 List of functions
+
+- if @functions.empty?
+  %p There are no function????? it's wired
+- else
+  %table
+    %thead
+      %tr
+        %td Name
+        %td Admin?
+    %tbody
+      - for function in @functions
+        %tr
+          %td
+            = function.name
+          %td
+            = function.admin? ? "X" : ""
+          %td
+            = link_to 'Edit', url(:edit_function,  function)
+
+= link_to 'New', url(:new_function)

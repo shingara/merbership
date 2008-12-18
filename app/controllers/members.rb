@@ -61,20 +61,14 @@ class Members < Application
 
 private
 
-  # only if user is admin
-  def admin_authenticated
-    if session.user
-      raise Unauthenticated unless session.user.admin?
-    else
-      raise Unauthenticated
-    end
-  end
-
   # only if user is admin or he want edit himself
   def edit_own
     if session.user
-      raise Unauthenticated unless session.user.admin? || session.user.id == params[:id].to_i
+      unless session.user.admin? || session.user.id == params[:id].to_i
+        message[:error] = 'You need to be an admin'
+        raise Unauthenticated
     else
+      message[:error] = 'You need to be an admin'
       raise Unauthenticated
     end
   end
