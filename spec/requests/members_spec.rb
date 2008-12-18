@@ -3,7 +3,7 @@ require File.join(File.dirname(__FILE__), '..', 'spec_helper.rb')
 given "a member exists" do
   Member.all.destroy!
   Function.all.destroy!
-  Member.gen
+  Member.gen(:function => Function.gen(:member))
   Member.gen(:function => Function.gen(:president))
 end
 
