@@ -8,7 +8,7 @@ given "a member exists" do
 end
 
 describe "resource(:members)" do
-  describe "GET" do
+  describe "GET", :given => 'a member exists' do
     
     before(:each) do
       @response = request(resource(:members))
