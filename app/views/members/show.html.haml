@@ -1,10 +1,21 @@
 %h1
-  Members controller, show action
-%p
-  Edit this file in
-  %tt
-    app/views/members/show.html.erb
+  ="Member #{@member.full_name}"
+  = link_to 'Edit',  url(:edit_member,  @member) if session.user.admin?
 
-= link_to 'Edit',  url(:edit_member,  @member)
-|
+%ul
+  %li 
+    Login : 
+    = @member.login
+  %li
+    Name :
+    = @member.full_name
+  %li
+    Function :
+    = @member.function.name
+  %li 
+    Subscription date :
+    = @member.subscription_on
+  
+
+
 = link_to 'Back', url(:members)

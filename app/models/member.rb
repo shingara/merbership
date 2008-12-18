@@ -26,6 +26,10 @@ class Member
     end
   end
 
+  def full_name
+    "#{firstname} #{lastname}"
+  end
+
   private
 
   # Generate a password if no password define. This password if generate by
