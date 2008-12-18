@@ -1,6 +1,6 @@
 %h1
   ="Member #{@member.full_name}"
-  = link_to 'Edit',  url(:edit_member,  @member) if session.user.admin?
+  = link_to 'Edit',  url(:edit_member,  @member) if admin?
 
 %ul
   %li 
