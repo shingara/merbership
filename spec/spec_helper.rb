@@ -23,7 +23,8 @@ require File.dirname(__FILE__) + '/fixtures.rb'
 Merb::Test.add_helpers do
  
   def create_default_admin
-    unless Member.first(:login => 'shingara')
+    m = Member.first(:login => 'shingara')
+    unless m
       unless Function.first(:admin => true)
         Function.gen(:president)
       end
@@ -31,7 +32,21 @@ Merb::Test.add_helpers do
                   :password => 'tintinpouet',
                   :password_confirmation => 'tintinpouet',
                   :function => Function.first(:admin => true)) or raise "can't create user"
+    else
+      unless m.function && m.function.admin?
+        f = Function.first(:admin => true)
+        unless f
+          f = Function.gen(:president)
+        end
+        m.function = f
+        m.save
+      end
     end
+    delete_all_user_without_function
+  end
+
+  def delete_all_user_without_function
+    Member.all(:function_id => nil).destroy!
   end
 
   def create_default_member
