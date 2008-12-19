@@ -67,6 +67,7 @@ private
       unless session.user.admin? || session.user.id == params[:id].to_i
         message[:error] = 'You need to be an admin'
         raise Unauthenticated
+      end
     else
       message[:error] = 'You need to be an admin'
       raise Unauthenticated
