@@ -1,0 +1,29 @@
+= Merbership =
+
+Merbership is a little application design to manage a single association. The
+first user maybe is Rubyfrance.
+
+== Features ==
+
+ * Create function in association like president/secretaire/member/etc... 
+   Each function can be have admin right or not
+ * List of all member in public part. Each member can be show individually
+ * After creation of user, this user can be edit some information define by
+   admin if non admin
+ * In list of member a mark define all user with subscription outdated
+ 
+ By Admin user define by his function
+
+ * Can create new member with all information and define his function
+ * Can edit or delete all member
+ * Can define time between 2 subscription needed
+ * Can define time where an email inform user than subscription is soon
+   outdated
+ * Can define information see in public part by user
+ * Can define information edit by user.
+
+ When a user is created an email is send to him with a generated password.
+ With this password, user can be define new password and change information
+ define by admin users.
+
+ A "lost password" must send a new password to user. So he can be relogged.
