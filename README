@@ -7,7 +7,7 @@ first user maybe is Rubyfrance.
 
  * Create function in association like president/secretaire/member/etc... 
    Each function can be have admin right or not
- * List of all member in public part. Each member can be show individually
+ * List of all member in public part. Each member can be shown individually
  * After creation of user, this user can be edit some information define by
    admin if non admin
  * In list of member a mark define all user with subscription outdated
