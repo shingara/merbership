@@ -1,0 +1,7 @@
+%h1 Settings
+
+= form_for(@setting, :action => url(:controller => 'settings', :action => 'index'), :method => 'POST') do
+  =hidden_field :id
+  %p=text_field :month_subscription, :label => 'Month of subscription'
+  %p=text_field :month_notification, :label => 'Month before notification'
+  %p=submit "update"
