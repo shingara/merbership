@@ -30,6 +30,13 @@ class Member
     "#{firstname} #{lastname}"
   end
 
+  def notified?
+    subscription_on < Setting.first.month_notification.month.ago.to_date
+  end
+
+  def out_subscription?
+  end
+
   private
 
   # Generate a password if no password define. This password if generate by

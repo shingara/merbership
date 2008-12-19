@@ -32,4 +32,27 @@ describe Member do
     Member.authenticate('foobar', 'tintinpouet').should == Member.first(:login => 'foobar')
   end
 
+  describe '#notified?' do
+
+    before :each do
+      @member = create_default_member
+      create_setting
+      # Setting gen has notified to 10 month
+    end
+
+    it 'should notified true because month_subscription is less than time where his subscription made' do
+      @member.subscription_on = 11.month.ago
+      @member.save
+      @member.should be_notified
+    end
+
+    it 'should notified false because month_subscription is less than time where his subscription made' do
+      @member.subscription_on = 9.month.ago
+      @member.save
+      @member.should_not be_notified
+    end
+  end
+
+  it 'should spec out_subscription?'
+
 end

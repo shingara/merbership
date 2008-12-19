@@ -50,11 +50,17 @@ Merb::Test.add_helpers do
   end
 
   def create_default_member
-    unless Member.first(:login => 'oupsnow')
-      Member.gen( :login => 'oupsnow',
+    m = Member.first(:login => 'oupsnow')
+    unless m
+      m = Member.gen( :login => 'oupsnow',
                   :password => 'tintinpouet',
                   :password_confirmation => 'tintinpouet') or raise "can't create user"
     end
+    m
+  end
+
+  def create_setting
+    Setting.gen unless Setting.first
   end
  
   def login_admin
