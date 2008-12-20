@@ -60,7 +60,8 @@ Merb::Test.add_helpers do
   end
 
   def create_setting
-    Setting.gen unless Setting.first
+    Setting.all.destroy!
+    Setting.gen
   end
  
   def login_admin
