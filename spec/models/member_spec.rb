@@ -51,8 +51,29 @@ describe Member do
       @member.save
       @member.should_not be_notified
     end
+
   end
 
-  it 'should spec out_subscription?'
+  describe '#out_subscription?' do
+
+    before :each do
+      @member = create_default_member
+      create_setting
+      # Setting gen has out_subscription to 12 month
+    end
+
+    it 'should notified true because month_subscription is less than time where his subscription made' do
+      @member.subscription_on = 13.month.ago
+      @member.save
+      @member.should be_out_subscription
+    end
+
+    it 'should notified false because month_subscription is less than time where his subscription made' do
+      @member.subscription_on = 9.month.ago
+      @member.save
+      @member.should_not be_out_subscription
+    end
+
+  end
 
 end

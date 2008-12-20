@@ -35,6 +35,7 @@ class Member
   end
 
   def out_subscription?
+    subscription_on < Setting.first.month_subscription.month.ago.to_date
   end
 
   private
