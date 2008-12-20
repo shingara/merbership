@@ -1,0 +1,8 @@
+%p
+  Do you want realy delete user
+  = @member.login
+
+= form_for @member, :action => resource(@member), :method => :delete do
+  %p= submit "Delete"
+
+= link_to "Back", url(:members)

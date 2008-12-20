@@ -49,6 +49,12 @@ class Members < Application
     end
   end
 
+  def delete(id)
+    @member = Member.get(id)
+    raise NotFound unless @member
+    display @member
+  end
+
   def destroy(id)
     @member = Member.get(id)
     raise NotFound unless @member

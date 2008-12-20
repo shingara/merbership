@@ -20,6 +20,7 @@ class Member
   belongs_to :function
 
   before :valid?, :generate_password
+  after :create, :send_password
 
   def admin?
     if function
@@ -78,6 +79,15 @@ class Member
     if new_record?
       self.password = self.password_confirmation = /\w{0,10}/.gen unless password
     end
+  end
+
+  def send_password
+    @setting = Setting.first
+    send_mail(MemberMailer, :password, {
+      :from => @setting.email_admin,
+      :to => email,
+      :subject => "Account created on #{@setting.name}"
+    }, { :member => self})
   end
 
 end

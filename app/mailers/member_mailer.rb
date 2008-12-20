@@ -11,5 +11,11 @@ class MemberMailer < Merb::MailController
     @member = params[:member]
     render_mail
   end
+
+  def password
+    @setting = Setting.first
+    @member = params[:member]
+    render_mail
+  end
   
 end

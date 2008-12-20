@@ -10,3 +10,7 @@ Merb::Config.use { |c|
   # or redirect logger using IO handle
   c[:log_stream] = STDOUT
 }
+Merb::BootLoader.after_app_loads do
+  # This will get executed after your app's classes have been loaded.
+  Merb::Mailer.delivery_method = :test_send
+end

@@ -21,6 +21,8 @@
             = link_to 'Show', url(:member, member)
           %td
             = link_to 'Edit', url(:edit_member,  member) if admin?
+          %td
+            = link_to 'Delete', resource(member, :delete) if admin?
 - else
   %p There are no member. So create one.
 
