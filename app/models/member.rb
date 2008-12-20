@@ -1,5 +1,6 @@
 class Member
   include DataMapper::Resource
+  include Merb::MailerMixin
   
   property :id, Serial
   property :login, String, :unique => true
@@ -13,10 +14,12 @@ class Member
   property :phone_number, String
   property :website, String
   property :subscription_on, Date
+  property :notify, Boolean
+  property :outdated, Boolean
 
   belongs_to :function
 
-  before :create, :generate_password
+  before :valid?, :generate_password
 
   def admin?
     if function
@@ -38,13 +41,43 @@ class Member
     subscription_on < Setting.first.month_subscription.month.ago.to_date
   end
 
+  def notify_subscription_if_needed
+    @setting = Setting.first
+    if out_subscription? && !outdated?
+        send_mail(MemberMailer, :subscription_outdated, {
+          :from => @setting.email_admin,
+          :to => email,
+          :subject => "Subscription to #{@setting.name} is soon outdated"
+        }, { :member => self})
+        self.outdated = true
+        save
+        return
+    elsif notified? && notify?
+        send_mail(MemberMailer, :subscription_soon_outdated, {
+          :from => @setting.email_admin,
+          :to => email,
+          :subject => "Subscription to #{@setting.name} is soon outdated"
+        }, { :member => self})
+        self.notify = true
+        save
+    elsif notify? && !notified?
+      self.notify = false
+      save
+    elsif outdated? && !out_subscription?
+      self.outdated = false
+      save
+    end
+  end
+
   private
 
   # Generate a password if no password define. This password if generate by
   # rangexp. A gem require by dm-sweatshop. If password no send after by mail,
   # the password is not getting another time.
   def generate_password
-    self.password = self.password_confirmation = /\w{0,10}/.gen unless password
+    if new_record?
+      self.password = self.password_confirmation = /\w{0,10}/.gen unless password
+    end
   end
 
 end

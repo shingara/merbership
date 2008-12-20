@@ -6,6 +6,8 @@ class Setting
   property :month_notification, Integer
   property :field_show, String
   property :field_edit, String
+  property :name, String
+  property :email_admin, String, :format => :email_address
 
 
 end
