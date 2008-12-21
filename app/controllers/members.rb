@@ -43,7 +43,7 @@ class Members < Application
   def update(id, member)
     @member = Member.get(id)
     raise NotFound unless @member
-    if @member.update_attributes(member)
+    if @member.update_attributes(member_filtered(member))
        redirect resource(@member)
     else
       display @member, :edit
@@ -86,6 +86,22 @@ private
     unless @setting.completed?
       redirect url(:controller => 'settings')
     end
+  end
+
+  def member_filtered(member)
+    member_param = member
+    if session.user.admin?
+      member_param.each do |key, value|
+        unless @setting.field_edit[key] || 
+          key == 'subscription_on' ||
+          key == 'function_id' ||
+          key == 'password_confirmation' ||
+          key == 'password' 
+          member_param.delete(key)
+        end
+      end
+    end
+    member_param
   end
 
 end # Members

@@ -3,25 +3,25 @@
 = error_messages_for @member
 
 = form_for(@member, :action => url(:member, @member)) do
-  - if @setting.field_edit['login']
+  - if @setting.field_edit['login'] || session.user.admin?
     %p=text_field :login, :label => 'Login :'
-  - if @setting.field_edit['firstname']
+  - if @setting.field_edit['firstname'] || session.user.admin?
     %p=text_field :firstname, :label => 'Firstname :' 
-  - if @setting.field_edit['lastname']
+  - if @setting.field_edit['lastname'] || session.user.admin?
     %p=text_field :lastname, :label => 'Lastname :' 
-  - if @setting.field_edit['email']
+  - if @setting.field_edit['email'] || session.user.admin?
     %p=text_field :email, :label => 'Email :' 
-  - if @setting.field_edit['birthdate']
+  - if @setting.field_edit['birthdate'] || session.user.admin?
     %p=text_field :birthdate, :label => 'Birth date :' 
-  - if @setting.field_edit['occupation']
+  - if @setting.field_edit['occupation'] || session.user.admin?
     %p=text_field :occupation, :label => 'Occupation :' 
-  - if @setting.field_edit['address']
+  - if @setting.field_edit['address'] || session.user.admin?
     %p=text_field :address, :label => 'Address :' 
-  - if @setting.field_edit['city']
+  - if @setting.field_edit['city'] || session.user.admin?
     %p=text_field :city, :label => 'City :' 
-  - if @setting.field_edit['phone_number']
+  - if @setting.field_edit['phone_number'] || session.user.admin?
     %p=text_field :phone_number, :label => 'Phone number :' 
-  - if @setting.field_edit['website']
+  - if @setting.field_edit['website'] || session.user.admin?
     %p=text_field :website, :label => 'Website :' 
   %p= password_field :password, :label => 'Password :'
   %p= password_field :password_confirmation, :label => 'Password confirmation :'
