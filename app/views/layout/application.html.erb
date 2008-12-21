@@ -6,8 +6,23 @@
     <link rel="stylesheet" href="/stylesheets/master.css" type="text/css" media="screen" charset="utf-8" />
   </head>
   <body>
-    <%= message[:notice] %>
-    <%= message[:error] %>
-    <%= catch_content :for_layout %>
+    <div id="menu">
+      <ul>
+        <% if session.user %>
+          <li><%= link_to 'Logout', '/logout' %></li>
+          <% if session.user.admin? %>
+            <li><%= link_to 'Functions', resource(:functions) %></li>
+            <li><%= link_to 'Settings', url(:controller => 'settings') %></li>
+          <% end %>
+        <% else %>
+          <li><%= link_to 'Login', '/login' %></li>
+        <% end %>
+      </ul>
+    </div>
+    <div id="content">
+      <%= message[:notice] %>
+      <%= message[:error] %>
+      <%= catch_content :for_layout %>
+  </div>
   </body>
 </html>

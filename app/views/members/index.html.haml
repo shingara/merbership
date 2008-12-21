@@ -20,9 +20,9 @@
           %td
             = link_to 'Show', url(:member, member)
           %td
-            = link_to 'Edit', url(:edit_member,  member) if admin?
+            = link_to 'Edit', url(:edit_member,  member) if admin? || session.user.id == member.id
           %td
-            = link_to 'Delete', resource(member, :delete) if admin?
+            = link_to 'Delete', resource(member, :delete) if admin? || session.user.id == member.id
 - else
   %p There are no member. So create one.
 
