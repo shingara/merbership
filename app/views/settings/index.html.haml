@@ -1,7 +1,11 @@
 %h1 Settings
 
+= error_messages_for @setting
+
 = form_for(@setting, :action => url(:controller => 'settings', :action => 'index'), :method => 'POST') do
   =hidden_field :id
+  %p=text_field :name, :label => 'Name of association'
+  %p=text_field :email_admin, :label => 'Email define like from all mail'
   %p=text_field :month_subscription, :label => 'Month of subscription'
   %p=text_field :month_notification, :label => 'Month before notification'
   %p=submit "update"

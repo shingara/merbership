@@ -4,6 +4,7 @@ class Members < Application
   before :ensure_authenticated, :exclude => [:show, :index]
   before :admin_authenticated, :only => [:new, :create, :destroy]
   before :edit_own, :only => [:edit, :update]
+  before :need_setting
 
   def index
     @members = Member.all
@@ -77,6 +78,13 @@ private
     else
       message[:error] = 'You need to be an admin'
       raise Unauthenticated
+    end
+  end
+
+  def need_setting
+    @setting = Setting.first
+    unless @setting.completed?
+      redirect url(:controller => 'settings')
     end
   end
 

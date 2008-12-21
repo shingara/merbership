@@ -33,4 +33,6 @@ Setting.fixture {{
   :month_notification => 10,
   :field_show => '1,2,3,4',
   :field_edit => '1,2,3,4,5',
+  :name => 'rubyfrance',
+  :email_admin => 'cyril.mougel@gmail.com',
 }}

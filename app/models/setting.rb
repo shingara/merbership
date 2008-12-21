@@ -9,5 +9,9 @@ class Setting
   property :name, String
   property :email_admin, String, :format => :email_address
 
+  def completed?
+    !month_subscription.blank? && !month_notification.blank? && !name.blank? && !email_admin.blank?
+  end
+
 
 end
