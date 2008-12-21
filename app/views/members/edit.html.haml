@@ -3,6 +3,28 @@
 = error_messages_for @member
 
 = form_for(@member, :action => url(:member, @member)) do
+  - if @setting.field_edit['login']
+    %p=text_field :login, :label => 'Login :'
+  - if @setting.field_edit['firstname']
+    %p=text_field :firstname, :label => 'Firstname :' 
+  - if @setting.field_edit['lastname']
+    %p=text_field :lastname, :label => 'Lastname :' 
+  - if @setting.field_edit['email']
+    %p=text_field :email, :label => 'Email :' 
+  - if @setting.field_edit['birthdate']
+    %p=text_field :birthdate, :label => 'Birth date :' 
+  - if @setting.field_edit['occupation']
+    %p=text_field :occupation, :label => 'Occupation :' 
+  - if @setting.field_edit['address']
+    %p=text_field :address, :label => 'Address :' 
+  - if @setting.field_edit['city']
+    %p=text_field :city, :label => 'City :' 
+  - if @setting.field_edit['phone_number']
+    %p=text_field :phone_number, :label => 'Phone number :' 
+  - if @setting.field_edit['website']
+    %p=text_field :website, :label => 'Website :' 
+  %p= password_field :password, :label => 'Password :'
+  %p= password_field :password_confirmation, :label => 'Password confirmation :'
   = partial :form
   %p
     = submit "Update"

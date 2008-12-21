@@ -3,12 +3,46 @@
   = link_to 'Edit',  url(:edit_member,  @member) if admin?
 
 %ul
-  %li 
-    Login : 
-    = @member.login
-  %li
-    Name :
-    = @member.full_name
+  - if @setting.field_show['login']
+    %li 
+      Login : 
+      = @member.login
+  - if @setting.field_show['firstname']
+    %li
+      Firstname :
+      = @member.firstname
+  - if @setting.field_show['lastname']
+    %li
+      Lastname :
+      = @member.lastname
+  - if @setting.field_show['email']
+    %li
+      Email :
+      = @member.email
+  - if @setting.field_show['birthdate']
+    %li
+      Birthdate :
+      = @member.birthdate
+  - if @setting.field_show['occupation']
+    %li
+      Occupation :
+      = @member.occupation
+  - if @setting.field_show['address']
+    %li
+      Address
+      = @member.address
+  - if @setting.field_show['city']
+    %li
+      City
+      = @member.city
+  - if @setting.field_show['phone_number']
+    %li
+      Phone number
+      = @member.phone_number
+  - if @setting.field_show['website']
+    %li
+      Website
+      = @member.website
   %li
     Function :
     = @member.function.name

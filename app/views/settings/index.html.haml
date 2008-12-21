@@ -8,4 +8,51 @@
   %p=text_field :email_admin, :label => 'Email define like from all mail'
   %p=text_field :month_subscription, :label => 'Month of subscription'
   %p=text_field :month_notification, :label => 'Month before notification'
+  %table
+    %thead
+      %tr
+        %th column
+        %th show
+        %th edit
+    %tbody
+      %tr
+        %td Login
+        %td= check_box :name => 'setting[field_show][login]', :checked => @setting.field_show['login']
+        %td= check_box :name => 'setting[field_edit][login]', :checked => @setting.field_edit['login']
+      %tr
+        %td Firstname
+        %td= check_box :name => 'setting[field_show][firstname]', :checked => @setting.field_show['firstname']
+        %td= check_box :name => 'setting[field_edit][firstname]', :checked => @setting.field_edit['firstname']
+      %tr
+        %td Lastname
+        %td= check_box :name => 'setting[field_show][lastname]', :checked => @setting.field_show['lastname']
+        %td= check_box :name => 'setting[field_edit][lastname]', :checked => @setting.field_edit['lastname']
+      %tr
+        %td Email
+        %td= check_box :name => 'setting[field_show][email]', :checked => @setting.field_show['email']
+        %td= check_box :name => 'setting[field_edit][email]', :checked => @setting.field_edit['email']
+      %tr
+        %td Birthdate
+        %td= check_box :name => 'setting[field_show][birthdate]', :checked => @setting.field_show['birthdate']
+        %td= check_box :name => 'setting[field_edit][birthdate]', :checked => @setting.field_edit['birthdate']
+      %tr
+        %td Occupation
+        %td= check_box :name => 'setting[field_show][occupation]', :checked => @setting.field_show['occupation']
+        %td= check_box :name => 'setting[field_edit][occupation]', :checked => @setting.field_edit['occupation']
+      %tr
+        %td Address
+        %td= check_box :name => 'setting[field_show][address]', :checked => @setting.field_show['address']
+        %td= check_box :name => 'setting[field_edit][address]', :checked => @setting.field_edit['address']
+      %tr
+        %td City
+        %td= check_box :name => 'setting[field_show][city]', :checked => @setting.field_show['city']
+        %td= check_box :name => 'setting[field_edit][city]', :checked => @setting.field_edit['city']
+      %tr
+        %td Phone number
+        %td= check_box :name => 'setting[field_show][phone_number]', :checked => @setting.field_show['phone_number']
+        %td= check_box :name => 'setting[field_edit][phone_number]', :checked => @setting.field_edit['phone_number']
+      %tr
+        %td Website
+        %td= check_box :name => 'setting[field_show][website]', :checked => @setting.field_show['website']
+        %td= check_box :name => 'setting[field_edit][website]', :checked => @setting.field_edit['website']
   %p=submit "update"

@@ -1,12 +1,7 @@
-%p=text_field :login, :label => 'Login :'
-%p=text_field :firstname, :label => 'Firstname :'
-%p=text_field :lastname, :label => 'Lastname :'
-%p=text_field :email, :label => 'Email :'
-%p=text_field :birthdate, :label => 'Birth date :'
-%p=text_field :occupation, :label => 'Occupation :'
-%p=text_field :address, :label => 'Address :'
-%p=text_field :city, :label => 'City :'
-%p=text_field :phone_number, :label => 'Phone number :'
-%p=text_field :website, :label => 'Website :'
 %p=text_field :subscription_on, :label => 'Date of subscription :'
-%p=select :function_id, :collection => Function.not_admin, :text_method => :name, :value_method => :id
+- if session.user.admin?
+  %p=select :function_id, :collection => Function.all, :text_method => :name, :value_method => :id, :label => 'Function :'
+- else
+  %p 
+    Function :
+    = @member.function.name
