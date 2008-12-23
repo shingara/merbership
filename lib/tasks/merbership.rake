@@ -3,6 +3,7 @@ namespace :merbership do
   desc 'Generate the first admin function and non admin function and first user like admin'
   task :bootstrap => :merb_env do
     require 'spec/fixtures.rb'
+    Setting.gen
     Member.gen(:login => 'admin',
                :password => 'merbership',
                :password_confirmation => 'merbership',
